@@ -1,55 +1,29 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  event = { "BufReadPre", "BufNewFile" },
-  build = ":TSUpdate",
-  config = function()
-    -- import nvim-treesitter plugin
-    local treesitter = require("nvim-treesitter.configs")
+	"nvim-treesitter/nvim-treesitter",
+	event = { "BufReadPre", "BufNewFile" },
+	build = ":TSUpdate",
+	config = function()
+		-- import nvim-treesitter plugin
+		-- Load the configuration module
+		local treesitter = require("nvim-treesitter.configs")
 
-    -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
-      highlight = {
-        enable = true,
-      },
-      -- enable indentation
-      indent = { enable = true },
-      -- ensure these language parsers are installed
-      ensure_installed = {
-        "json",
-        "javascript",
-        "typescript",
-        "tsx",
-        "yaml",
-        "html",
-        "css",
-        "prisma",
-        "markdown",
-        "markdown_inline",
-        "svelte",
-        "graphql",
-        "bash",
-        "lua",
-        "vim",
-        "dockerfile",
-        "gitignore",
-        "query",
-        "vimdoc",
-        "c",
-        "python",
-        "java",
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<bs>",
-        },
-      },
-    })
+		-- Call the setup function with your desired options
+		treesitter.setup({
+			-- Add languages to be installed here
+			ensure_installed = { "bash", "c", "lua", "vim", "vimdoc", "markdown" },
 
-    -- use bash parser for zsh files
-    vim.treesitter.language.register("bash", "zsh")
-  end,
+			-- Enable syntax highlighting
+			highlight = {
+				enable = true,
+			},
+
+			-- Enable indentation
+			indent = {
+				enable = true,
+			},
+
+			-- Autoinstall languages that are not installed
+			auto_install = true,
+		})
+	end,
 }
