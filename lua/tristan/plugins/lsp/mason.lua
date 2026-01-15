@@ -32,7 +32,7 @@ return {
 				"stylua", -- lua formatter
 				"isort", -- python formatter
 				"black", -- python formatter
-				"flake8",
+				"ruff",
 			},
 		},
 		dependencies = {
